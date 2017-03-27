@@ -38,4 +38,5 @@ setup(
     extras_require={
         "dev": ["pytest>=2.7.1", "testtools>=1.8.0"],
     },
+    dependency_links = ['https://github.com/x0zzz/tree-format.git#egg=tree-format']
 )

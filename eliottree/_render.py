@@ -205,7 +205,7 @@ def render_tasks(write, tasks, field_limit=0, ignored_fields=None,
         COLORS(colored if colorize else _no_color))
     _get_children = partial(get_children, ignored_fields)
     for task in tasks:
-        tree     = format_tree(task, _format_node, _get_children)
+        tree     = format_tree(task, _format_node, _get_children, False)
         filtered = _filter_unnamed(tree) if filter_unnamed else tree
         write(filtered)
         write(u'\n')
