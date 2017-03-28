@@ -176,7 +176,7 @@ def get_children(ignored_fields, node):
     return []
 
 def _filter_unnamed(lines):
-    return [line for line in lines[1:] if '<unnamed>' not in line]
+    return u'\n'.join([line for line in lines[1:] if '<unnamed>' not in line])
 
 def render_tasks(write, tasks, field_limit=0, ignored_fields=None,
                  human_readable=False, colorize=False, filter_unnamed=False):
@@ -205,8 +205,8 @@ def render_tasks(write, tasks, field_limit=0, ignored_fields=None,
         COLORS(colored if colorize else _no_color))
     _get_children = partial(get_children, ignored_fields)
     for task in tasks:
-        tree     = format_tree(task, _format_node, _get_children, False)
-        filtered = _filter_unnamed(tree) if filter_unnamed else tree
+        tree     = format_tree(task, _format_node, _get_children, not filter_unnamed)
+        filtered = _filter_unnamed(list(tree)) if filter_unnamed else tree
         write(filtered)
         write(u'\n')
 
