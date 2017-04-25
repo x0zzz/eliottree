@@ -208,7 +208,5 @@ def render_tasks(write, tasks, field_limit=0, ignored_fields=None,
         tree     = format_tree(task, _format_node, _get_children, not filter_unnamed)
         filtered = _filter_unnamed(list(tree)) if filter_unnamed else tree
         write(filtered)
-        write(u'\n')
-
 
 __all__ = ['render_tasks']
