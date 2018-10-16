@@ -264,7 +264,7 @@ def render_tasks(write, tasks, field_limit=0, ignored_fields=None,
         u'<node formatting exception>')
     _get_children = partial(get_children, ignored_fields)
     for task in tasks:
-        tree     = format_tree(task, _format_node, _get_children, not filter_unnamed)
+        tree     = format_tree(task, _format_node, _get_children, join_lines=not filter_unnamed)
         filtered = _filter_unnamed(list(tree)) if filter_unnamed else tree
         write(filtered)
 
