@@ -57,7 +57,7 @@ def parse_messages(files=None, select=None, task_uuid=None, start=None,
                     task = json.loads(line)
                     inventory[id(task)] = file_name, line_number
                     yield task
-                except:
+                except Exception:
                     raise JSONParseError(
                         file_name,
                         line_number,
@@ -77,12 +77,14 @@ def display_tasks(tasks, color, ignored_fields, field_limit, human_readable):
     the task trees to stdout.
     """
     write = text_writer(sys.stdout).write
+    write_err = text_writer(sys.stderr).write
     if color == 'auto':
         colorize = sys.stdout.isatty()
     else:
         colorize = color == 'always'
     render_tasks(
         write=write,
+        write_err=write_err,
         tasks=tasks,
         ignored_fields=set(ignored_fields) or None,
         field_limit=field_limit,

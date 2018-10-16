@@ -4,6 +4,24 @@ eliot-tree changelog
 
 .. towncrier release notes start
 
+Eliottree 18.1.0 (2018-07-30)
+=============================
+
+Features
+--------
+
+- Timestamps are now rendered after the action status or message level. A duration is included too when available. (#72)
+
+
+Eliottree 18.0.0 (2018-07-23)
+=============================
+
+Features
+--------
+
+- Exceptions that occur during node or value formatting no longer interrupt processing and are displayed after the tree output. (#69)
+
+
 Eliottree 17.1.0
 ==========
 
