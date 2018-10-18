@@ -2,7 +2,10 @@ from datetime import datetime
 
 from six import binary_type, text_type, unichr
 from toolz import merge
+from dateutil.tz import gettz
 
+_UTC = gettz('UTC')
+_CET = gettz('CET')
 
 _control_equivalents = dict((i, unichr(0x2400 + i)) for i in range(0x20))
 _control_equivalents[0x7f] = u'\u2421'
@@ -71,7 +74,7 @@ def timestamp(include_microsecond=True):
     Create a formatter for POSIX timestamp values.
     """
     def _format_timestamp_value(value, field_name=None):
-        result = datetime.utcfromtimestamp(float(value))
+        result = datetime.utcfromtimestamp(float(value)).replace(tzinfo=_UTC).astimezone(_CET)
         if not include_microsecond:
             result = result.replace(microsecond=0)
         result = result.isoformat(' ')
