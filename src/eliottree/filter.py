@@ -1,8 +1,10 @@
 from datetime import datetime
 
 import jmespath
-from iso8601.iso8601 import UTC
+from dateutil.tz import gettz
 
+_UTC = gettz('UTC')
+_CET = gettz('CET')
 
 def filter_by_jmespath(query):
     """
@@ -23,9 +25,9 @@ def filter_by_uuid(task_uuid):
 
 def _parse_timestamp(timestamp):
     """
-    Parse a timestamp into a UTC L{datetime}.
+    Parse a timestamp into a CET L{datetime}.
     """
-    return datetime.utcfromtimestamp(timestamp).replace(tzinfo=UTC)
+    return datetime.utcfromtimestamp(timestamp).replace(tzinfo=_UTC).astimezone(_CET)
 
 
 def filter_by_start_date(start_date):

@@ -50,6 +50,7 @@ setup(
         'termcolor>=1.1.0',
         'toolz>=0.8.2',
         'eliot>=0.12.0',
+        'python-dateutil>=2.7.3',
     ],
     extras_require={
         'test': ['testtools>=1.8.0'],
