@@ -27,7 +27,7 @@ def _parse_timestamp(timestamp):
     """
     Parse a timestamp into a CET L{datetime}.
     """
-    return datetime.utcfromtimestamp(timestamp).replace(tzinfo=_UTC).astimezone(_CET)
+    return datetime.utcfromtimestamp(timestamp).replace(tzinfo=_UTC).astimezone(_CET).replace(tzinfo=None)
 
 
 def filter_by_start_date(start_date):

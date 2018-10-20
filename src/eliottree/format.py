@@ -74,7 +74,7 @@ def timestamp(include_microsecond=True):
     Create a formatter for POSIX timestamp values.
     """
     def _format_timestamp_value(value, field_name=None):
-        result = datetime.utcfromtimestamp(float(value)).replace(tzinfo=_UTC).astimezone(_CET)
+        result = datetime.utcfromtimestamp(float(value)).replace(tzinfo=_UTC).astimezone(_CET).replace(tzinfo=None)
         if not include_microsecond:
             result = result.replace(microsecond=0)
         result = result.isoformat(' ')
